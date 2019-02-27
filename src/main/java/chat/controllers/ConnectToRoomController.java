@@ -20,21 +20,21 @@ public class ConnectToRoomController {
         return new ModelAndView("rooms");
     }
 
-    @RequestMapping("/join")
+    @RequestMapping("/connect")
     public ModelAndView join(@RequestParam String chatId) {
         Integer count = ROOM_LOAD.get(chatId);
-        if (count == null || count < CONNECTION_LIMIT ) {
+//        if (count != null) {
             count = count == null ? 0 : count;
             count++;
             ROOM_LOAD.put(chatId, count);
             ModelAndView modelAndView = new ModelAndView("chat");
             modelAndView.addObject("chatId", chatId);
             return modelAndView;
-        }
-        return new ModelAndView("rooms");
+//        }
+//        return new ModelAndView("rooms");
     }
 
-    @RequestMapping("/outOfRoom")
+    @RequestMapping("/disconnect")
     public ModelAndView disconnect(@RequestParam String chatId) {
         Integer count = ROOM_LOAD.get(chatId);
         if (count != null && count != 0) {

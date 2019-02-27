@@ -12,3 +12,14 @@ body {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+
+.inline-group {
+    /*margin: 20px 0;*/
+    position: relative;
+    display: inline-block; /*Add this*/
+    vertical-align: middle;
+    /*position: relative;*/
+    /*min-height: 1px;*/
+    /*padding-right: 15px;*/
+    /*padding-left: 15px;*/
+}

@@ -23,7 +23,6 @@
 <div class="btn-group">
     <button id="win" onclick="join(this)">Windows</button>
     <button id="linux" onclick="join(this)">Linux</button>
-    <button id="ios" onclick="join(this)">IOS</button>
 </div>
 </body>
 </html>
