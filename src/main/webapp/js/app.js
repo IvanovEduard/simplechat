@@ -33,6 +33,12 @@ function connect(chatId) {
     });
 }
 
+function showMessage(message) {
+    $("#messages").append("<tr><td>" +
+        "<div class='user-name'>"+getDateInFormat()+" "+ message.userName + ":"+"</div>" +
+        "</div>"+message.content +"</td></tr>");
+}
+
 function disconnect() {
     if (stompClient !== null) {
         stompClient.disconnect();
@@ -51,12 +57,17 @@ function sendMessage() {
     ));
 }
 
-function showMessage(message) {
-    $("#messages").append("<tr><td>" + message.userName + ":" + message.content + "</td></tr>");
+function getDateInFormat() {
+    var now = new Date();
+    return now.toLocaleTimeString();
 }
 
 function join(button) {
     window.location.href = "connect?chatId=" + button.id;
+}
+
+function showTaken() {
+    $("#taken").append("<div  class='info'>Sorry, this room is taken:(</div>");
 }
 
 $(function () {

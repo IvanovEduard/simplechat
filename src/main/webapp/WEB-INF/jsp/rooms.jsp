@@ -10,19 +10,17 @@
 <head>
     <title>Rooms</title>
     <link href="../../css/room.css" rel="stylesheet">
-    <%--<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">--%>
     <script src="../webjars/jquery/jquery.min.js"></script>
     <script src="././webjars/sockjs-client/sockjs.min.js"></script>
     <script src="././webjars/stomp-websocket/stomp.min.js"></script>
     <script src="../../js/app.js"></script>
-
 </head>
 <body>
 <h1>Chat Rooms</h1>
 
-<div class="btn-group">
-    <button id="win" onclick="join(this)">Windows</button>
-    <button id="linux" onclick="join(this)">Linux</button>
+<div>
+    <button id="win" class="btn-group" onclick="join(this)">Windows</button>
+    <button id="linux" class="btn-group" onclick="join(this)">Linux</button>
 </div>
 </body>
 </html>

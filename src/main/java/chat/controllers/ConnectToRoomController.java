@@ -1,6 +1,9 @@
 package chat.controllers;
 
 
+import chat.general.RoomCapacityBalancer;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,12 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ConnectToRoomController {
-    private static final short CONNECTION_LIMIT = 2;
-    private static ConcurrentHashMap<String, Integer> ROOM_LOAD = new ConcurrentHashMap<String, Integer>();
+    private final RoomCapacityBalancer checkRoomCapacity;
 
     @RequestMapping("/")
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse httpServletResponse) {
@@ -22,25 +24,12 @@ public class ConnectToRoomController {
 
     @RequestMapping("/connect")
     public ModelAndView join(@RequestParam String chatId) {
-        Integer count = ROOM_LOAD.get(chatId);
-//        if (count != null) {
-            count = count == null ? 0 : count;
-            count++;
-            ROOM_LOAD.put(chatId, count);
-            ModelAndView modelAndView = new ModelAndView("chat");
-            modelAndView.addObject("chatId", chatId);
-            return modelAndView;
-//        }
-//        return new ModelAndView("rooms");
+        return checkRoomCapacity.checkRoomCapacity(chatId);
     }
 
     @RequestMapping("/disconnect")
     public ModelAndView disconnect(@RequestParam String chatId) {
-        Integer count = ROOM_LOAD.get(chatId);
-        if (count != null && count != 0) {
-            count = count - 1;
-            ROOM_LOAD.put(chatId, count);
-        }
+        checkRoomCapacity.releaseRoom(chatId);
         return new ModelAndView("redirect:/");
     }
 }

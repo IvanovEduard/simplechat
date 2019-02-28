@@ -1,20 +1,23 @@
-.btn-group button{
-    background: rgb(28, 184, 65);
-    color: white;
-    border: 1px solid forestgreen;
+.btn-group {
+    background: rgb(226, 226, 226);
+    color: black;
+    border: 2px solid #858585;
+    border-radius: 10px;
     padding: 10px 24px;
+    margin: 10px 0;
     cursor: pointer;
     width: 50%;
+    height: 200px;
     display: block;
     font-size: 24px;
 }
 
-.btn-group button:not(:last-child) {
-    border-bottom: none;
-}
+/*.btn-group button:not(:last-child) {*/
+    /*border-bottom: none;*/
+/*}*/
 
-.btn-group button:hover {
-    background-color: #229fff;
+.btn-group:hover {
+    background-color: #858585;
 }
 
 .chatBox {
@@ -51,26 +54,82 @@
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
+    margin: 10px 0;
+    padding: 10px 24px;
 }
 
 .send-button {
-    background: rgb(34, 159, 255);
+    background: rgba(33, 157, 255, 0.91);
     color: white;
-    border: 1px solid #82ccc3;
+    border: 2px solid rgb(33, 133, 218);;
     border-radius: 5px;
-    padding: 0 24px;
-
+    padding: 10px 24px;
     width: 100px;
     height: 100px;
-    font-size: 15px;
+    font: 24px "Fira Sans", sans-serif;
 
 }
 .send-button:hover {
     cursor: pointer;
-    background-color: #121eaf;
+    background: rgb(33, 133, 218);
 }
 
 .send-button[type=submit]:disabled {
     background: #dddddd;
     pointer-events: auto;
+}
+
+/*.name-validation input:required {*/
+    /*border: 2px solid red;*/
+/*}*/
+
+.element-block {
+    position: relative;
+    display: inline-block;
+}
+
+input{
+    padding: 10px;
+    height: 34px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+input:required:invalid {
+    border: 2px solid red;
+}
+
+.button-default {
+    vertical-align: middle;
+    padding: 6px 12px;
+    font-size: 14px;
+    height: 34px;
+    border: 1px solid #a4a4a4;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+.button-default:hover {
+    border: 1px solid #cacaca;
+    background-color: #d3d3d3;
+}
+
+#nameForm:invalid .confirm {
+    background : #ff1c1a;
+}
+
+#nameForm:valid .confirm {
+    background : #00c000;
+}
+
+.info {
+    font-size: 24px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid rgba(251, 165, 17, 0.85);
+    border-radius: 4px;
+    background-color: rgba(255, 211, 0, 0.75);
+}
+
+.user-name {
+    color: dodgerblue;
 }
