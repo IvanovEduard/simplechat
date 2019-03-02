@@ -24,7 +24,7 @@ public class ConnectToRoomController {
 
     @RequestMapping("/connect")
     public ModelAndView join(@RequestParam String chatId) {
-        return checkRoomCapacity.checkRoomCapacity(chatId);
+        return checkRoomCapacity.takePlaceInRoom(chatId);
     }
 
     @RequestMapping("/disconnect")
