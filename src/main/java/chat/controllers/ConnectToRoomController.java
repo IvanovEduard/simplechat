@@ -15,21 +15,21 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ConnectToRoomController {
-    private final RoomCapacityBalancer checkRoomCapacity;
+    private final RoomCapacityBalancer roomCapacityBalancer;
 
     @RequestMapping("/")
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse httpServletResponse) {
+    public ModelAndView handleRequest() {
         return new ModelAndView("rooms");
     }
 
     @RequestMapping("/connect")
     public ModelAndView join(@RequestParam String chatId) {
-        return checkRoomCapacity.takePlaceInRoom(chatId);
+        return roomCapacityBalancer.takePlaceInRoom(chatId);
     }
 
     @RequestMapping("/disconnect")
     public ModelAndView disconnect(@RequestParam String chatId) {
-        checkRoomCapacity.releaseRoom(chatId);
+        roomCapacityBalancer.releaseRoom(chatId);
         return new ModelAndView("redirect:/");
     }
 }

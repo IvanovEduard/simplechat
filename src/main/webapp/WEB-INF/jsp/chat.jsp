@@ -10,7 +10,6 @@
 <head>
     <title>Chat</title>
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/main.css" rel="stylesheet">
     <link href="../../css/room.css" rel="stylesheet" type="text/css">
     <script src="././webjars/jquery/jquery.min.js"></script>
     <script src="././webjars/sockjs-client/sockjs.min.js"></script>
@@ -26,7 +25,7 @@
     <div>
         <div class="info">
             <div class="name-validation">
-                Please enter your name before messaging
+                Please enter your name before messaging in ${chatId} room
             </div>
         </div>
         <div class="element-block">

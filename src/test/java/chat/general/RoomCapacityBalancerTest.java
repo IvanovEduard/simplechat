@@ -1,20 +1,19 @@
 package chat.general;
 
 import com.google.common.collect.Sets;
+import lombok.extern.log4j.Log4j;
 import org.junit.After;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Field;
 import java.util.Set;
 import java.util.concurrent.*;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
-@RunWith(MockitoJUnitRunner.class)
+@Log4j
 public class RoomCapacityBalancerTest {
 
     private RoomCapacityBalancer roomCapacityBalancer = new RoomCapacityBalancer();
@@ -49,7 +48,7 @@ public class RoomCapacityBalancerTest {
     @Test
     public void testTakePlaceInRoomWhenNoFreePlace() {
         ModelAndView modelAndViewChat1 = roomCapacityBalancer.takePlaceInRoom(WIN_ID);
-        ModelAndView modelAndViewChat2= roomCapacityBalancer.takePlaceInRoom(WIN_ID);
+        ModelAndView modelAndViewChat2 = roomCapacityBalancer.takePlaceInRoom(WIN_ID);
         ModelAndView modelAndViewRooms = roomCapacityBalancer.takePlaceInRoom(WIN_ID);
 
         assertThat(modelAndViewChat1.getViewName(), is(VIEW_CHAT));
@@ -70,7 +69,7 @@ public class RoomCapacityBalancerTest {
         executorService.shutdown();
 
         Set<String> actual = Sets.newHashSet(submit1.get().getViewName(), submit2.get().getViewName());
-        assertThat(actual, is(Sets.newHashSet(VIEW_CHAT,VIEW_ROOMS)));
+        assertThat(actual, is(Sets.newHashSet(VIEW_CHAT, VIEW_ROOMS)));
     }
 
     @Test
@@ -119,20 +118,20 @@ public class RoomCapacityBalancerTest {
         @Override
         public ModelAndView call() throws Exception {
             countDownLatch.await();
-            System.out.println(Thread.currentThread().getName());
+            log.info(Thread.currentThread().getName());
             return roomCapacityBalancer.takePlaceInRoom(chatId);
         }
     }
 
-    class RoomCapacityBalancerRelease implements Runnable{
+    class RoomCapacityBalancerRelease implements Runnable {
 
         private CountDownLatch countDownLatch;
         private RoomCapacityBalancer roomCapacityBalancer;
         private String chatId;
 
         private RoomCapacityBalancerRelease(CountDownLatch countDownLatch,
-                                          RoomCapacityBalancer roomCapacityBalancer,
-                                          String chatId) {
+                                            RoomCapacityBalancer roomCapacityBalancer,
+                                            String chatId) {
             this.countDownLatch = countDownLatch;
             this.roomCapacityBalancer = roomCapacityBalancer;
             this.chatId = chatId;
@@ -143,9 +142,9 @@ public class RoomCapacityBalancerTest {
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error(e);
             }
-            System.out.println(Thread.currentThread().getName());
+            log.info(Thread.currentThread().getName());
             roomCapacityBalancer.releaseRoom(chatId);
         }
     }

@@ -1,3 +1,29 @@
+body {
+    background-color: #f5f5f5;
+}
+
+#main-content {
+    max-width: 940px;
+    padding: 10px 30px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font: 1.2em "Fira Sans", sans-serif;
+}
+
+.inline-group {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.align-right{
+    float: right;
+}
+
 .btn-group {
     background: rgb(226, 226, 226);
     color: black;
@@ -11,10 +37,6 @@
     display: block;
     font-size: 24px;
 }
-
-/*.btn-group button:not(:last-child) {*/
-    /*border-bottom: none;*/
-/*}*/
 
 .btn-group:hover {
     background-color: #858585;
@@ -30,24 +52,9 @@
     overflow-y: auto;
 }
 
-.myContainer {
-    font-size: 24px;
-    border: 2px solid #dedede;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-.myDarker {
-    border-color: #ccc;
-    background-color: #ddd;
-}
-
 .messageBox {
     width: 500px;
     height: 100px;
-    /*padding: 12px 20px;*/
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -76,12 +83,9 @@
 
 .send-button[type=submit]:disabled {
     background: #dddddd;
+    border: 2px solid #dddddd;;
     pointer-events: auto;
 }
-
-/*.name-validation input:required {*/
-    /*border: 2px solid red;*/
-/*}*/
 
 .element-block {
     position: relative;
