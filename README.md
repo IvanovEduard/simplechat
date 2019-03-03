@@ -1,6 +1,10 @@
 # simplechat
-`Simple Chat` implemented with using **Spring Boot + WebSockets technology
-STOMP messaging protocol + Maven build tool**
+`Simple Chat` implemented with using 
+ - Spring Boot 
+ - WebSockets technology STOMP messaging protocol
+ - Log4j 
+ - Lombok
+ - Maven
 
 
 ### Testing
