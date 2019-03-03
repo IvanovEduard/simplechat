@@ -7,6 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static java.util.Objects.nonNull;
+
 @Component
 @Log4j
 public class RoomCapacityBalancer {
@@ -42,7 +44,7 @@ public class RoomCapacityBalancer {
     public void releaseRoom(String chatId) {
         AtomicInteger count = ROOM_LOAD.get(chatId);
         synchronized (this) {
-            if (count.get() != DEFAULT_COUNT) {
+            if (nonNull(count) && count.get() != DEFAULT_COUNT) {
                 count.decrementAndGet();
                 ROOM_LOAD.put(chatId, count);
             }
